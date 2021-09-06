@@ -5,14 +5,15 @@ import { mainPage } from "../support/pages/mainPage"
 import { fastSearchPopup } from "../support/pages/fastSearchPopup"
 
 describe("SearchFunctionality", () => {
-    beforeEach(() => {        
+    beforeEach(() => {
+        cy.fixture('config').then(function(config) {
+            this.config = config;
+        })
         cy.loginToApp()
     })
 
-    it("Verify fast search results", () =>{   
-        cy.fixture('config').as('config').then((config) => {
-            mainPage.searchItem(config.itemName)
-            fastSearchPopup.verifyFastSearchResults(config.itemName)
-        })          
+    it("Verify fast search results", function(){
+        mainPage.searchItem(this.config.itemName)
+        fastSearchPopup.verifyFastSearchResults(this.config.itemName)        
     })
 });

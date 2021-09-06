@@ -15,6 +15,10 @@ Cypress.Commands.add('loginToApp', () =>{
       loginPage.setPassword(config.password)      
     })    
     loginPage.clickSubmitButton()
+        
+    cy.intercept(Cypress.config().baseUrl).as('mainPage')    
+    cy.wait('@mainPage')
+
 })
 
 Cypress.Commands.add('switchToElement', { prevSubject: 'element' }, ($iframe, selector) => {

@@ -4,5 +4,9 @@
     "viewportHeight": 1280,
     "viewportWidth": 1920,
     "chromeWebSecurity": false,
-    "video": false  
+    "video": false,    
+    "env":
+    {
+        "catalogUrl": "https://catalog.onliner.by/"
+    }
 }

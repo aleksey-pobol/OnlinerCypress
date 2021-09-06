@@ -14,6 +14,12 @@ export class MainPage{
             irfame().find('.search__input').type(itemName)             
         })
     }
+
+    openCatalogPage(){
+        cy.intercept(Cypress.env('catalogUrl')).as('catalogPage')
+        cy.get('.b-main-navigation__item').contains('Каталог').click();
+        cy.wait('@catalogPage')
+    }
 }
 
 export const mainPage = new MainPage()
