@@ -2,20 +2,11 @@ export class CatalogPage{
        
     verifyCatalogSections(){        
         cy.fixture('config').as('config').then((config) => {                      
-            config.catalogSections.forEach((element, index, array) => {                
-                cy.get('[class*=item-title-wrapper]').each( (listItem) => {
-                    let itemText = listItem.text()
-                    cy.log(itemText)
-                    cy.log(`${element}`)
-                    cy.pause()                         
-                    if(cy.wrap(itemText).should('equal', `${element}`)){
-                        itemText++
-                        return false
-                    }                     
-                })
-                if(index == array.length){
-                    return false
-                }
+            config.catalogSections.forEach((element, item) => {
+                cy.get('[class*=item-title-wrapper]').eq(item).should((title) => {
+                    const text = title.text().replace(/\s+/g, '')
+                    expect(text).to.equal(`${element}`)                               
+                })                          
             });
         })         
     }
