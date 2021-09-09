@@ -1,6 +1,6 @@
 export class CatalogPage{
        
-    verifyCatalogSections(){        
+    confirmCatalogSectionsExist(){        
         cy.fixture('config').as('config').then((config) => {                      
             config.catalogSections.forEach((element, item) => {
                 cy.get('[class*=item-title-wrapper]').eq(item).should((title) => {
@@ -12,9 +12,9 @@ export class CatalogPage{
     }
 
     selectSectionFromCatalogCategories(mainCategorie, subCategories, section){
-        cy.get('[class*=item-title-wrapper]').contains(mainCategorie).first().click()
-        cy.get('[class*=aside-title]').contains(subCategories).first().click()
-        cy.get('[class*=dropdown-title]').contains(section).first().click()  
+        cy.get('[class*=item-title-wrapper]').contains(mainCategorie).click()
+        cy.get('[class*=aside-title]').contains(subCategories).click()
+        cy.get('[class*=dropdown-title]').contains(section).click()  
 
         /* cy.get('h1[class=schema-header__title]').then((header) =>{
             expect(header.text().includes(section)).to.be.true
@@ -24,15 +24,14 @@ export class CatalogPage{
     openItemPageByItemIndex(itemIndex){
         cy.get('.schema-product__group').eq(itemIndex).find('[class*=schema-product__title]:first-child').click('left')
         
-        cy.get('.product-specs__title').then((header) =>{
+        cy.get('.product-specs__title').then((header) => {
             expect(header.text().includes('Описание')).to.be.true
         })
     }
 
     getItemNameByItemIndex(itemIndex){
-        cy.get('.schema-product__group').eq(itemIndex).find('[class*=schema-product__title]:first-child span').then((item) =>{
-            const ItemName = item.text()
-            cy.wrap(ItemName).as('itemName')
+        cy.get('.schema-product__group').eq(itemIndex).find('[class*=schema-product__title]:first-child span').then((item) => {            
+            cy.wrap(item.text()).as('itemName')
         })
     }
 }

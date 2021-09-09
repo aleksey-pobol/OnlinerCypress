@@ -5,29 +5,40 @@ import { mainPage } from "../support/pages/mainPage"
 import { catalogPage } from "../support/pages/catalogPage"
 import { itemPage } from "../support/pages/itemPage"
 import { comparePopup } from "../support/pages/popups/comparePopup"
+import { comparePage } from "../support/pages/comparePage"
 
 describe("ComparisonFunctionality", () => {
+    const mainCategorieName = 'Электроника'
+    const subCategoriesName = 'Телевидение и видео'
+    const sectionName = 'Телевизоры'
+
     beforeEach(() => {        
         cy.loginToApp()
     })
 
-    it("Verify comparison of two items", () => {
+    it("Verifying comparison of two items", () => {
         mainPage.openCatalogPage()
-        catalogPage.selectSectionFromCatalogCategories('Электроника', 'Телевидение и видео', 'Телевизоры')
-        //const firstItemName = catalogPage.getItemNameByItemIndex(0)
+        catalogPage.selectSectionFromCatalogCategories(mainCategorieName, subCategoriesName, sectionName)        
         catalogPage.getItemNameByItemIndex(0)        
-        cy.get('@itemName').then(text => {
-            cy.log(text)
-        })
-        //cy.log(firstItemName)
-        
-        cy.pause()
+        cy.get('@itemName').as('firstComparedItemName')        
         catalogPage.openItemPageByItemIndex(0)
         itemPage.addItemToCompare()
         cy.go('back')
-        const secondItemName = catalogPage.getItemNameByItemIndex(1)
+        catalogPage.getItemNameByItemIndex(1)
+        cy.get('@itemName').as('secondComparedItemName')        
         catalogPage.openItemPageByItemIndex(1)
         itemPage.addItemToCompare()
-        comparePopup.compareItems(2)
+        comparePopup.clickCompareItems(2)          
+        cy.get('@firstComparedItemName').then(firstComparedItemName => {
+            cy.get('@secondComparedItemName').then(secondComparedItemName => {                
+                comparePage.verifyComparedItems([firstComparedItemName, secondComparedItemName])
+            })
+        })
+        comparePage.confirmDifferingCharacteristicsAreHighlighted()
+    })
+
+    after(() => {        
+        cy.go('back')
+        comparePopup.removeItemsFromComparison()
     })
 });

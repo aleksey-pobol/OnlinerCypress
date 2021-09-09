@@ -8,7 +8,7 @@ describe("BaseFunctionality", () => {
         cy.loginToApp()
     })
 
-    it("Verify user login successfully", () =>{
+    it("Verifying user login successfully", () =>{
         mainPage.confirmUserLoginSuccessfully()
     })
 });

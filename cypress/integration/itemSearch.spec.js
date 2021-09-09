@@ -12,7 +12,7 @@ describe("SearchFunctionality", () => {
         cy.loginToApp()
     })
 
-    it("Verify fast search results", function(){
+    it("Verifying fast search results", function(){
         mainPage.searchItem(this.config.itemName)
         fastSearchPopup.verifyFastSearchResults(this.config.itemName)        
     })

@@ -9,8 +9,8 @@ describe("MenuFunctionality", () => {
         cy.loginToApp()
     })
 
-    it("Verify catalog page", () => {
+    it("Verifying catalog page", () => {
         mainPage.openCatalogPage()
-        catalogPage.verifyCatalogSections()
+        catalogPage.confirmCatalogSectionsExist()
     })
 });

@@ -7,18 +7,16 @@ Cypress.Commands.add('openMainPage', () => {
     cy.visit('/')    
 })
 
-Cypress.Commands.add('loginToApp', () =>{
+Cypress.Commands.add('loginToApp', () => {
     cy.openMainPage()
     mainPage.openLoginPage()
     cy.fixture('config').as('config').then((config) => {
       loginPage.setEmail(config.email)
       loginPage.setPassword(config.password)      
     })    
-    loginPage.clickSubmitButton()
-        
     cy.intercept(Cypress.config().baseUrl).as('mainPage')    
+    loginPage.clickSubmitButton()            
     cy.wait('@mainPage')
-
 })
 
 Cypress.Commands.add('switchToElement', { prevSubject: 'element' }, ($iframe, selector) => {
