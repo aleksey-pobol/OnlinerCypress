@@ -12,7 +12,7 @@ describe("ComparisonFunctionality", () => {
     const subCategoriesName = 'Телевидение и видео'
     const sectionName = 'Телевизоры'
 
-    beforeEach(() => {        
+    beforeEach(() => {
         cy.loginToApp()
     })
 

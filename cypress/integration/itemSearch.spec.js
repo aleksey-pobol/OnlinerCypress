@@ -2,7 +2,7 @@
 /// <reference types="cypress-iframe" />
 
 import { mainPage } from "../support/pages/mainPage"
-import { fastSearchPopup } from "../support/pages/fastSearchPopup"
+import { fastSearchPopup } from "../support/pages/popups/fastSearchPopup"
 
 describe("SearchFunctionality", () => {
     beforeEach(() => {

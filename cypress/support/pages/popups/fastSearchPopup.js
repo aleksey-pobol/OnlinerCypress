@@ -9,6 +9,12 @@ export class FastSearchPopup{
             })
         })        
     }
+
+    openItemPage(itemName){        
+        cy.iframe('.modal-iframe').then( iframe => {            
+            cy.wrap(iframe).find('.product__title-link').click()
+        })
+    }
 }
 
 export const fastSearchPopup = new FastSearchPopup()
