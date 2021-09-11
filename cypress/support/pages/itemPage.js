@@ -10,7 +10,7 @@ export class ItemPage{
 
     addItemToCartBySellerIndex(sellerIndex){
         cy.get('.offers-list__item').eq(sellerIndex).then(offer => {
-            offer.get('.offers-list__button_cart').click()
+            cy.wrap(offer).find('.offers-list__button_cart').last().click()
         })        
     }
 

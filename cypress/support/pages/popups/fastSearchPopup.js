@@ -12,7 +12,7 @@ export class FastSearchPopup{
 
     openItemPage(itemName){        
         cy.iframe('.modal-iframe').then( iframe => {            
-            cy.wrap(iframe).find('.product__title-link').click()
+            cy.wrap(iframe).find('.product__title-link').should('contain', itemName).click()
         })
     }
 }
