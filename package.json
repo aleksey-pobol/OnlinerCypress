@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "cy:run_dashboard": "npx cypress run --record --key 6511584f-da9d-4aac-ae72-1d67ac58d909",
+        "cy:run_spec": "npx cypress run --spec 'cypress/integration/login.spec.js'"
+    }
+}

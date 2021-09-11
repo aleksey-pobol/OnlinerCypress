@@ -1,12 +1,15 @@
 {
     "baseUrl": "https://www.onliner.by/",
-    "ignoreTestFiles": ["**/1-getting-started/*", "**/2-advanced-examples/*"],  
+    "ignoreTestFiles": [
+      "**/1-getting-started/*",
+       "**/2-advanced-examples/*"
+    ],  
     "viewportHeight": 1280,
     "viewportWidth": 1920,
     "chromeWebSecurity": false,
     "video": false,    
-    "env":
-    {
+    "env": {
         "catalogUrl": "https://catalog.onliner.by/"
-    }
+    },
+    "projectId": "72yb35"
 }
