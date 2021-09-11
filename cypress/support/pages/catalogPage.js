@@ -14,16 +14,16 @@ export class CatalogPage{
     selectSectionFromCatalogCategories(mainCategorie, subCategories, section){
         cy.get('[class*=item-title-wrapper]').contains(mainCategorie).click()
         cy.get('[class*=aside-title]').contains(subCategories).click()
-        cy.get('[class*=dropdown-title]').contains(section).click()  
-
-        /* cy.get('h1[class=schema-header__title]').then((header) =>{
+        cy.get('[class*=dropdown-title]').contains(section).click()
+        // Added waiting for the section to open
+        cy.get('h1[class=schema-header__title]').then((header) =>{
             expect(header.text().includes(section)).to.be.true
-        }) */
+        })
     }
 
     openItemPageByItemIndex(itemIndex){
         cy.get('.schema-product__group').eq(itemIndex).find('[class*=schema-product__title]:first-child').click('left')
-        
+        // Added waiting for the item page to open
         cy.get('.product-specs__title').then((header) => {
             expect(header.text().includes('Описание')).to.be.true
         })
